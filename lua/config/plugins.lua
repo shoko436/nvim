@@ -55,11 +55,15 @@ require('lazy').setup({
         disable = { 'qf' },
         additional_vim_regex_highlighting = { 'ruby' },
       },
+      fold = {
+        enable = true,
+      },
     }
   },                                 -- Resaltado de sintaxis
   { 'nvim-tree/nvim-web-devicons' }, -- Iconos
   { 'onsails/lspkind.nvim' },
   { 'nvim-lualine/lualine.nvim' },   -- Barra de estado
+  { 'luukvbaal/statuscol.nvim' },
   {
     'nvim-tree/nvim-tree.lua',
     lazy = false,
