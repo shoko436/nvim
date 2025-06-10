@@ -16,10 +16,11 @@ nmap('<Leader>q', ':q<CR>')   -- Quit current buffer
 nmap('<Leader>qa', ':qa<CR>') -- Quit all buffers
 
 -- Insert mode mappings
-nmap('<Leader>i', 'I') -- Insert at beginning of line
-nmap('<Leader>a', 'A') -- Append at end of line
-nmap('<Leader>o', 'O') -- Open new line above
-nmap('<Leader>g', 'G') -- Go to end of file
+keymap('i', '<C-CR>', '<Esc>') -- Press 'jj' to exit insert mode
+nmap('<Leader>i', 'I')         -- Insert at beginning of line
+nmap('<Leader>a', 'A')         -- Append at end of line
+nmap('<Leader>o', 'O')         -- Open new line above
+nmap('<Leader>g', 'G')         -- Go to end of file
 
 -- Diagnostics
 nmap('<Leader>rn', vim.lsp.buf.rename)                                -- Rename symbol
@@ -59,3 +60,9 @@ nmap('<Leader><Leader>v', '<C-w>v <C-w>l :Telescope find_files<CR>') -- Split wi
 
 -- Toggleterm
 nmap('<Leader><Leader>t', ':ToggleTerm<CR>') -- Toggle terminal
+
+-- Folding
+nmap('<Leader>z', 'za') -- Toggle foldopen
+nmap('zv', function()
+  _G.preview_fold()
+end)
