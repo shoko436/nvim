@@ -43,3 +43,9 @@ require('config.formatter-nvim')
 
 -- Configuration of indent-blankline-nvim
 require('config.indent-blankline-nvim')
+
+-- Configuration of toggleterm.nvim
+require('config.toggleterm')
+
+-- Configuration of statuscol-nvim
+require('config.statuscol-nvim')
