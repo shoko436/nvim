@@ -11,36 +11,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   -- Themes
-  { 'folke/tokyonight.nvim' }, -- Tema estilo VSCode
-  { 'Mofiqul/vscode.nvim' },
-  { 'Mofiqul/dracula.nvim' },
-  { 'olimorris/onedarkpro.nvim', priority = 1000, },
-  {
-    'svrana/neosolarized.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('neosolarized').setup({
-        comment_italics = true,
-        background_set = true,
-      })
-    end,
-    dependencies = {
-      'tjdevries/colorbuddy.nvim',
-    },
-  },
-  {
-    "loctvl842/monokai-pro.nvim",
-    config = function()
-      require("monokai-pro").setup({
-        filter = 'octagon',
-        transparent_background = false,
-        backgrouund_clear = { 'float_win' },
-        terminal_colors = true,
-        devicons = true,
-      })
-    end
-  },
+  { 'olimorris/onedarkpro.nvim',  priority = 1000, },
 
   -- UI
   {
@@ -145,6 +116,7 @@ require('lazy').setup({
 
   -- Utils
   { 'L3MON4D3/LuaSnip' }, -- Soporte para snippets
+  { 'echasnovski/mini.nvim',      version = '*' },
   { 'saadparwaiz1/cmp_luasnip' },
   { 'windwp/nvim-autopairs',      event = 'InsertEnter', config = true },
   { 'mhartington/formatter.nvim', lazy = false },
