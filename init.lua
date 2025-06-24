@@ -14,9 +14,6 @@ require('config.autocommands')
 -- Plugins
 require('config.plugins')
 
--- Configuration of mason
-require('config.mason')
-
 -- Configuration of theme
 require('config.theme')
 
@@ -49,3 +46,6 @@ require('config.toggleterm')
 
 -- Configuration of statuscol-nvim
 require('config.statuscol-nvim')
+
+-- Configuration of mini-move
+require('config.mini-move')
