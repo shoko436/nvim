@@ -11,7 +11,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   -- Themes
-  { 'olimorris/onedarkpro.nvim',  priority = 1000, },
+  {
+    "loctvl842/monokai-pro.nvim",
+    config = function()
+      require("monokai-pro").setup({
+        filter = 'pro'
+      })
+    end
+  },
 
   -- UI
   {
@@ -20,7 +27,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs',
     opts = {
       auto_install = true,
-      ensure_installed = { 'bash', 'lua', 'diff', 'regex', 'sql', 'yaml', 'vim', 'vimdoc', 'ruby', 'csv', 'rego', 'terraform' },
+      ensure_installed = { 'bash', 'lua', 'diff', 'regex', 'sql', 'yaml', 'vim', 'vimdoc', 'ruby', 'csv', 'terraform', 'go', 'gowork', 'gomod', 'gosum' },
       highlight = {
         enable = true,
         disable = { 'qf' },
@@ -30,16 +37,21 @@ require('lazy').setup({
         enable = true,
       },
     }
-  },                                 -- Resaltado de sintaxis
-  { 'nvim-tree/nvim-web-devicons' }, -- Iconos
-  { 'onsails/lspkind.nvim' },
-  { 'nvim-lualine/lualine.nvim' },   -- Barra de estado
+  },                                               -- Resaltado de sintaxis
+  { 'nvim-tree/nvim-web-devicons' },               -- Iconos
+  { 'nvim-lualine/lualine.nvim' },                 -- Barra de estado
   { 'luukvbaal/statuscol.nvim' },
-  {
-    'nvim-tree/nvim-tree.lua',
-    lazy = false,
-  }, -- Explorador de archivos
+  { 'nvim-tree/nvim-tree.lua',    lazy = false, }, -- Explorador de archivos
+  { 'folke/twilight.nvim',        opts = {}, },
   { 'folke/todo-comments.nvim' },
+  {
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    opts = {},
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+    }
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
@@ -51,16 +63,6 @@ require('lazy').setup({
     'akinsho/toggleterm.nvim',
     version = "*",
     config = true
-  },
-  {
-    'folke/noice.nvim',
-    event = 'VeryLazy',
-    opts = {
-      -- add any options here
-    },
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-    }
   },
   {
     'nvim-telescope/telescope.nvim',
@@ -79,11 +81,14 @@ require('lazy').setup({
       })
     end,
   },
-  { 'neovim/nvim-lspconfig' },
   { 'williamboman/mason.nvim' },
   { 'williamboman/mason-lspconfig.nvim' },
   { 'hrsh7th/nvim-cmp' },
   { 'hrsh7th/cmp-nvim-lsp' },
+  { 'neovim/nvim-lspconfig' },
+  { 'onsails/lspkind.nvim' },
+  { 'L3MON4D3/LuaSnip' }, -- Soporte para snippets
+  { 'saadparwaiz1/cmp_luasnip' },
   {
     'zbirenbaum/copilot-cmp',
     event = 'InsertEnter',
@@ -115,9 +120,7 @@ require('lazy').setup({
   },
 
   -- Utils
-  { 'L3MON4D3/LuaSnip' }, -- Soporte para snippets
   { 'echasnovski/mini.nvim',      version = '*' },
-  { 'saadparwaiz1/cmp_luasnip' },
   { 'windwp/nvim-autopairs',      event = 'InsertEnter', config = true },
   { 'mhartington/formatter.nvim', lazy = false },
   {
