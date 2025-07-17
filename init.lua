@@ -47,5 +47,8 @@ require('config.toggleterm')
 -- Configuration of statuscol-nvim
 require('config.statuscol-nvim')
 
--- Configuration of mini-move
-require('config.mini-move')
+-- Configuration of mini
+require('config.mini')
+
+vim.g.lazyvim_ruby_lsp = 'solargraph'
+vim.g.lazyvim_ruby_format = 'rubocop'

@@ -43,10 +43,21 @@ end, { desc = 'CopilotChat - Prompt actions' }) -- CopilotChat prompt actions
 nmap('<Leader>ccw', ':CopilotChatOpen<CR>')     -- CopilotChat
 
 -- Navigation
-nmap('<C-h>', '<C-w>h') -- Move to left window
-nmap('<C-j>', '<C-w>j') -- Move to bottom window
-nmap('<C-k>', '<C-w>k') -- Move to top window
-nmap('<C-l>', '<C-w>l') -- Move to right window
+nmap('<C-h>', '<C-w>h')  -- Move to left window
+nmap('<C-j>', '<C-w>j')  -- Move to bottom window
+nmap('<C-k>', '<C-w>k')  -- Move to top window
+nmap('<C-l>', '<C-w>l')  -- Move to right window
+nmap('<Leader>1', '1gt') -- Go to tab 1
+nmap('<Leader>2', '2gt') -- Go to tab 2
+nmap('<Leader>3', '3gt') -- Go to tab 3
+nmap('<Leader>4', '4gt') -- Go to tab 4
+nmap('<Leader>5', '5gt') -- Go to tab 5
+nmap('<Leader>6', '6gt') -- Go to tab 6
+nmap('<Leader>7', '7gt') -- Go to tab 7
+nmap('<Leader>8', '8gt') -- Go to tab 8
+nmap('<Leader>9', '9gt') -- Go to tab 9
+nmap('<Leader>[', 'gT')  -- Go to previous window
+nmap('<Leader>]', 'gt')  -- Go to next window
 
 -- Moving buffers
 nmap('<Leader><Leader>h', '<C-w>H') -- Move buffer to left

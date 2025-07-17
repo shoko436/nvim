@@ -8,18 +8,11 @@ require('mason-lspconfig').setup {
 }
 
 local lspconfig = require('lspconfig')
-lspconfig.solargraph.setup({
-  cmd = { 'solargraph', 'stdio' },
-  filetypes = { 'ruby' },
-  init_options = {
-    formatting = true
-  },
-  solargraph = {
-    diagnostics = true
-  }
-})
-lspconfig.gopls.setup {}
-lspconfig.yamlls.setup {}
+
+vim.lsp.enable('solargraph')
+vim.lsp.enable('gopls')
+vim.lsp.enable('yamlls')
+vim.lsp.enable('terraformls')
 
 lspconfig.lua_ls.setup {
   on_init = function(client)
@@ -54,3 +47,15 @@ lspconfig.lua_ls.setup {
     Lua = {}
   }
 }
+
+vim.diagnostic.config({
+  signs = {
+    text = {
+      -- Define the text for each diagnostic severity level
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "",
+    },
+  },
+})
