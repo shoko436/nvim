@@ -15,3 +15,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.diagnostic.setloclist({ open = false })
   end,
 })
+
+vim.api.nvim_create_autocmd("TextChanged", {
+  desc = "Redraw folds on text change",
+  pattern = "*",
+  callback = function()
+    vim.cmd("silent! normal! zx")
+  end,
+})
