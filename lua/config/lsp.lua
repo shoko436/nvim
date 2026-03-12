@@ -7,14 +7,7 @@ require('mason-lspconfig').setup {
   }
 }
 
-local lspconfig = require('lspconfig')
-
-vim.lsp.enable('solargraph')
-vim.lsp.enable('gopls')
-vim.lsp.enable('yamlls')
-vim.lsp.enable('terraformls')
-
-lspconfig.lua_ls.setup {
+vim.lsp.config("lua_ls", {
   on_init = function(client)
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
@@ -33,7 +26,7 @@ lspconfig.lua_ls.setup {
       workspace = {
         checkThirdParty = false,
         library = {
-          vim.env.VIMRUNTIME
+          vim.env.VIMRUNTIME,
           -- Depending on the usage, you might want to add additional paths here.
           -- "${3rd}/luv/library"
           -- "${3rd}/busted/library",
@@ -46,7 +39,13 @@ lspconfig.lua_ls.setup {
   settings = {
     Lua = {}
   }
-}
+})
+
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('solargraph')
+vim.lsp.enable('gopls')
+vim.lsp.enable('yamlls')
+vim.lsp.enable('terraformls')
 
 vim.diagnostic.config({
   signs = {
