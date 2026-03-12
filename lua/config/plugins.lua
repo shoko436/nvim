@@ -38,10 +38,13 @@ require('lazy').setup({
       },
     }
   },                                               -- Resaltado de sintaxis
-  { 'nvim-tree/nvim-web-devicons' },               -- Iconos
+  { 'nvim-tree/nvim-web-devicons', priority = 1000 },               -- Iconos
   { 'nvim-lualine/lualine.nvim' },                 -- Barra de estado
-  { 'luukvbaal/statuscol.nvim' },
-  { 'nvim-tree/nvim-tree.lua',    lazy = false, }, -- Explorador de archivos
+  -- { 'luukvbaal/statuscol.nvim' },
+  { 'nvim-tree/nvim-tree.lua',
+    lazy = false,
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
+  }, -- Explorador de archivos
   { 'folke/twilight.nvim',        opts = {}, },
   { 'folke/todo-comments.nvim' },
   {
@@ -81,14 +84,37 @@ require('lazy').setup({
       })
     end,
   },
-  { 'williamboman/mason.nvim' },
+  {
+    'williamboman/mason.nvim',
+    config = function()
+      require("mason").setup({
+        ui = {
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+          }
+        }
+      })
+    end
+  },
   { 'williamboman/mason-lspconfig.nvim' },
   { 'hrsh7th/nvim-cmp' },
   { 'hrsh7th/cmp-nvim-lsp' },
+  { 'hrsh7th/cmp-buffer' },
+  { 'hrsh7th/cmp-path' },
+  { 'hrsh7th/cmp-cmdline' },
   { 'neovim/nvim-lspconfig' },
   { 'onsails/lspkind.nvim' },
-  { 'L3MON4D3/LuaSnip' }, -- Soporte para snippets
+  { 'L3MON4D3/LuaSnip' },
   { 'saadparwaiz1/cmp_luasnip' },
+  { 'rafamadriz/friendly-snippets' },
+
+  -- Additional LSP enhancements for VSCode-like experience
+  { 'nvimdev/lspsaga.nvim', event = 'LspAttach' },
+  { 'folke/trouble.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
+  { 'ray-x/lsp_signature.nvim' },
+  { 'j-hui/fidget.nvim', opts = {} },
   {
     'zbirenbaum/copilot-cmp',
     event = 'InsertEnter',
@@ -115,8 +141,13 @@ require('lazy').setup({
     build = "make tiktoken",                          -- Only on MacOS or Linux
     opts = {
       -- See Configuration section for options
+      mappings = {
+        reset = {
+          normal = '<C-r>',
+          insert = '<C-r>'
+        },
+      }
     },
-    -- See Commands section for default commands if you want to lazy load on them
   },
 
   -- Utils
@@ -146,5 +177,56 @@ require('lazy').setup({
       'RainbowDelimSimple',
       'RainbowDelimQuoted',
     }
+  },
+
+  -- VSCode-like enhancements
+  { 'tpope/vim-commentary' }, -- For commenting (gc, gcc)
+  { 'mg979/vim-visual-multi', branch = 'master' }, -- Multiple cursors like VSCode
+  {
+    'nvim-pack/nvim-spectre', -- Search and replace panel
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
+  {
+    'akinsho/bufferline.nvim', -- VSCode-like tabs
+    version = "*",
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    config = function()
+      require("bufferline").setup{
+        options = {
+          mode = "buffers",
+          themable = true,
+          separator_style = "slant",
+          always_show_bufferline = true,
+          show_buffer_close_icons = true,
+          show_close_icon = true,
+          color_icons = true,
+          diagnostics = "nvim_lsp",
+          diagnostics_update_in_insert = false,
+          offsets = {
+            {
+              filetype = "NvimTree",
+              text = "File Explorer",
+              text_align = "center",
+              separator = true
+            }
+          },
+        }
+      }
+    end
+  },
+  {
+    'rcarriga/nvim-notify', -- Better notifications
+    config = function()
+      vim.notify = require("notify")
+      require("notify").setup({
+        background_colour = "#000000",
+      })
+    end
+  },
+  {
+    'stevearc/dressing.nvim', -- Better vim.ui interfaces
+    config = function()
+      require('dressing').setup()
+    end
   },
 })

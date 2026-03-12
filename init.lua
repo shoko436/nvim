@@ -17,6 +17,9 @@ require('config.plugins')
 -- Configuration of theme
 require('config.theme')
 
+-- Configuration of web devicons
+require('config.web-devicons')
+
 -- Configuration of nvim-tree
 require('config.nvim-tree')
 
@@ -28,6 +31,12 @@ require('config.gitsigns')
 
 -- Configuration of LSP
 require('config.lsp')
+
+-- Configuration of lspsaga
+require('config.lspsaga')
+
+-- Configuration of trouble
+require('config.trouble')
 
 -- Configuration of nvim-cmp
 require('config.nvim-cmp')
@@ -49,6 +58,3 @@ require('config.statuscol-nvim')
 
 -- Configuration of mini
 require('config.mini')
-
-vim.g.lazyvim_ruby_lsp = 'solargraph'
-vim.g.lazyvim_ruby_format = 'rubocop'

@@ -1,53 +1,85 @@
--- enable 24-bit colour
-vim.opt.termguicolors = true -- enable 24-bit colour
-vim.o.scrolloff = 8
-vim.o.textwidth = 110
-vim.o.colorcolumn = '110,120'
-vim.o.mouse = 'a'
-vim.o.clipboard = 'unnamedplus'
-vim.o.laststatus = 2
-vim.o.showmode = false
-vim.o.cursorline = true
-vim.o.completeopt = 'menu,menuone,noinsert,preview'
-vim.o.smartcase = true
-vim.o.syntax = 'on'
-vim.o.autoread = true
-vim.o.swapfile = true
-vim.o.backup = false
+-- VSCode-like editor options
+vim.opt.termguicolors = true
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.textwidth = 110
+vim.opt.colorcolumn = '110,120'
+vim.opt.mouse = 'a'
+vim.opt.clipboard = 'unnamedplus'
+vim.opt.laststatus = 3 -- Global statusline
+vim.opt.showmode = false
+vim.opt.cursorline = true
+vim.opt.completeopt = 'menu,menuone,noinsert,preview'
+vim.opt.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.syntax = 'on'
+vim.opt.autoread = true
+vim.opt.swapfile = false -- Disable swap files for better performance
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.undofile = true -- Enable persistent undo
+vim.opt.undodir = vim.fn.stdpath('data') .. '/undo'
 
--- numbers
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.numberwidth = 2
+-- Better search
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
 
--- indenting
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
-vim.o.expandtab = true
-vim.o.smartindent = true
+-- Better completion
+vim.opt.pumheight = 15 -- Maximum number of entries in popup menu
+vim.opt.pumblend = 10  -- Transparency for popup menu
+vim.opt.winblend = 10  -- Transparency for floating windows
 
--- title config
-vim.o.title = true
-vim.o.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+-- Line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.numberwidth = 2
+vim.opt.signcolumn = 'yes' -- Automatically adjust sign column
 
--- folding
-vim.o.foldcolumn = '1'                             -- Columna de plegado
-vim.o.foldmethod = 'expr'                          -- Método de plegado basado en sintaxis
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'      -- Usar Treesitter para plegar
-vim.o.foldtext = 'v:lua.custom_fold_text()'        -- Función personalizada para el texto del plegado
-vim.o.foldopen = 'quickfix,insert,search,tag,undo' -- Métodos de apertura de plegados
-vim.o.foldlevel = 99                               -- Para que no esté colapsado por defecto
-vim.o.foldlevelstart = 99                          -- Para que no esté colapsado por defecto
-vim.o.foldenable = true
-vim.opt.fillchars = {
-  fold = ' ',
-  foldopen = '',
-  foldclose = '',
-  foldsep = ' ',
-  eob = ' ',
-}
+-- Indenting (VSCode defaults)
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+vim.opt.breakindent = true
 
+-- Better splitting
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+-- Title config
+vim.opt.title = true
+vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+
+-- Better visual feedback
+vim.opt.showmatch = true
+vim.opt.matchtime = 2
+
+-- Performance
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+
+-- Folding (enhanced)
+-- vim.opt.foldcolumn = '1'
+-- vim.opt.foldmethod = 'expr'
+-- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- vim.opt.foldtext = 'v:lua.custom_fold_text()'
+-- vim.opt.foldopen = 'quickfix,insert,search,tag,undo'
+-- vim.opt.foldlevel = 99
+-- vim.opt.foldlevelstart = 99
+-- vim.opt.foldenable = true
+
+-- Ensure fillchars includes proper characters for folds
+-- vim.opt.fillchars = {
+--   fold = ' ',
+--   foldopen = '▾',
+--   foldclose = '▸',
+--   foldsep = ' ',
+--   eob = ' ',
+-- }
+
+-- Custom fold text function (must be defined before setting foldtext)
 function _G.custom_fold_text()
   local fs = vim.v.foldstart
   local fe = vim.v.foldend
@@ -60,5 +92,24 @@ function _G.custom_fold_text()
   return fold_line .. suffix
 end
 
--- plugins
+-- Better whitespace handling
+vim.opt.list = true
+vim.opt.listchars = {
+  tab = '→ ',
+  trail = '·',
+  extends = '»',
+  precedes = '«',
+  nbsp = '⎵',
+}
+
+-- Plugin configurations
 vim.g.rcsv_delimiters = { ",", "\t" }
+
+-- Set leader key early
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+-- Enable loader cache for better performance
+if vim.loader then
+  vim.loader.enable()
+end
